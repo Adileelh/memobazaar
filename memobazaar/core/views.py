@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from .models import Memo
 
 def index(request):
     return render(request, "core/index.html")
@@ -25,3 +25,9 @@ def register(request):
 @login_required()
 def profile(request):
     return render(request, 'users/profile.html')
+
+@login_required
+def memos(request):
+    user_memos = Memo.objects.filter(user=request.user)
+    context = {'memos': user_memos}
+    return render(request, 'users/memos.html', context)

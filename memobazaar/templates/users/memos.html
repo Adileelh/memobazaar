@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>My Memos</h1>
+    <ul>
+        {% for memo in memos %}
+            <li><strong>{{ memo.title }}</strong></li>
+            <li>{{ memo.category }}</li>
+            <li>{{ memo.content }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
